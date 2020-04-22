@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, TextInput, FlatList, AsyncStorage, ScrollView } from 'react-native';
+import { Text, View, TouchableOpacity, TextInput, FlatList, AsyncStorage } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import randHex from './Hex';
 
@@ -11,26 +11,39 @@ export default function App() {
 
   const renderItem = ({ item }) =>
   (<TouchableOpacity
-    style={[styles.listItem, itemSelected(item.selected)]} onPress={() => handleSelectItem(item.id)}>
-    <Text style={styles.listText}>{item.value}</Text>
+    style={[styles.listItem, backgroundSelected(item.selected)]} onPress={() => handleSelectItem(item.id)}>
+    <Text style={[styles.listText, textSelected(item.selected)]}>{item.value}</Text>
     <TouchableOpacity style={styles.listButton} onPress={() => handleDeleteItem(item.id)}>
-      <Feather name="x" size={18} color="#c1c1c1" />
+      <Feather name="x" size={18} color={item.selected? "#c5f0d4" : "#c1c1c1"} />
     </TouchableOpacity>
   </TouchableOpacity>);
 
-  function itemSelected(selected) {
+  function backgroundSelected(selected) {
     return {
-      backgroundColor: selected ? "#2fc495" : "#fff",
-      borderBottomColor: selected ? "#22a37b" : "#efefef",
+      backgroundColor: selected ? "#77d49c" : "#fff",
+      borderBottomColor: selected ? "#5cbf83" : "#efefef",
+    }
+  };
+
+  function textSelected(selected) {
+    return {
+      color: selected ? "#fff" : "#000",
+      fontWeight: selected ? "bold" : "normal"
     }
   };
 
   function handleAddItem() {
-    setItems([...items, {
-      "id": randHex(12),
-      "value": text
-    }]);
-    setText('');
+    try {
+      let newItems = items.map(item => {return item});
+      newItems = newItems.concat({"id": randHex(12), "value": text});
+      setItems(newItems);
+      setText('');
+    } 
+    catch (error) {
+      setItems([{"id": randHex(12), "value": text}]);
+      setText('');
+    }
+
   };
 
   function handleDeleteItem(id) {
@@ -50,16 +63,22 @@ export default function App() {
     setItems(newSelected);
   };
 
+  function handleFinishItem() {
+    try {
+      let newItems = items.filter(item => !item.selected);
+      setItems(newItems);
+    } catch (error) {
+      console.log("Failed to finish items!");
+    }
+    
+  };
+
   // GET ASYNC STORAGE DATA
   useEffect(() => {
     async function getData() {
       try {
         const list = await AsyncStorage.getItem('LIST_ITEMS');
-        if (list !== null) {
-          setItems(JSON.parse(list));
-          console.log('entrou try e if getItem');
-
-        }
+        setItems(JSON.parse(list));
       }
       catch (error) {
         alert("Couldn't load your data :(");
@@ -71,15 +90,12 @@ export default function App() {
   // SET ASYNC STORAGE DATA
   useEffect(() => {
     async function setData() {
-      //if (items.length > 0) {
       try {
         await AsyncStorage.setItem('LIST_ITEMS', JSON.stringify(items));
-        console.log('entrou try setItem');
       }
       catch (error) {
         alert("Couldn't store your data :(");
       }
-      //}
     };
     setData();
   }, [items]);
@@ -108,6 +124,10 @@ export default function App() {
           renderItem={renderItem}
           keyExtractor={item => (item.id)}
         />
+
+      <TouchableOpacity style={styles.footer} onPress={handleFinishItem}>
+        <Text style={styles.footerText}>Done!</Text>
+      </TouchableOpacity>
 
     </View>
 

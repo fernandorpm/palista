@@ -1,13 +1,17 @@
 {
   "expo": {
     "name": "Palista",
-    "slug": "",
+    "description": "note and done",
+    "slug": "palista",
+    "githubUrl": "https://github.com/fernandorpm/palista",
+    "primaryColor": "#7f2bb6",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
     "version": "1.0.0",
+    "sdkVersion": "37.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -22,7 +26,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fernanorpm.palista",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.fernandorpm.palista"
     }
   }
 }

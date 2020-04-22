@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#efefef',
+        backgroundColor: '#f0f0fa',
     },
 
     header: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
 
         borderRadius: 5,
-        shadowColor: "#000",
+        shadowColor: '#000',
         shadowOffset: {
             width: 70,
             height: 7,
@@ -66,11 +66,23 @@ const styles = StyleSheet.create({
         borderBottomColor: '#efefef',
         borderBottomWidth: 1,
         margin: 0,
-        position: "relative"
+        height: 52,
     },
 
     listButton: {
         padding: 20,
+    },
+
+    footer: {
+        alignItems: 'center',
+        padding: 20,
+        backgroundColor: '#fff',
+        borderTopWidth: 1,
+        borderTopColor: '#efefef'
+    },
+
+    footerText: {
+        fontSize: 16,
     }
 });
 
