@@ -4,7 +4,7 @@
 **Latest update: 22/04/2020**
 
 - [x] **v 1.0.1 - Created First Mobile version of the app with basic features (22/04/2020)**
-- [x] ###### v 0.0.1 - Created Expo version of the app with basic features (12/04/2020)
+- [x] v 0.0.1 - Created Expo version of the app with basic features (12/04/2020)
 
 _________________________________________________
 
@@ -25,5 +25,5 @@ _________________________________________________
 - [x] Adjust icon
 
 **✅ Mobile version**
-- [ ] Allow user to Add and Delete lists
+- [x] Allow user to Add and Delete lists
 - [ ] Set and Get lists and list items in/from AsyncStorage
