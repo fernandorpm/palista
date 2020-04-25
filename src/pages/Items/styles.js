@@ -7,9 +7,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f0fa',
     },
 
+    headerName: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: Constants.statusBarHeight + 20,
+        backgroundColor: '#7f2bb6',
+        fontSize: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    headerNameText: {
+        color: '#fff',
+        fontSize: 20
+    },
+
     header: {
         padding: 20,
-        paddingTop: Constants.statusBarHeight + 30,
+        paddingTop: 12,
         flexDirection: 'row',
         backgroundColor: '#7f2bb6',
         justifyContent: 'space-between',
@@ -29,14 +44,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
 
         borderRadius: 5,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 70,
-            height: 7,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 9.11,
-        elevation: 8,
     },
 
     headerInput:{ 
@@ -53,8 +60,19 @@ const styles = StyleSheet.create({
         height: 50,
         borderTopRightRadius: 5,
         borderBottomRightRadius: 5,
+        marginLeft: -8,
         alignItems: 'center',
         paddingTop: 15,
+    },
+
+    headerButtonBack: {
+        backgroundColor: '#641c94',
+        width: 38,
+        height: 38,
+        alignItems: 'center',
+        paddingTop: 8,
+        borderRadius: 5,
+        marginRight: 12,
     },
 
     listItem: {
